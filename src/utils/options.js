@@ -2,7 +2,7 @@
 function Options() {
 	this.options = {
 		// If enable, the rpx conversion is automatically added
-		rpx: { enable: true, size: 750 },
+		autorpx: { enable: false, size: 750 },
 
 	};
 }
