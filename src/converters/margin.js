@@ -1,11 +1,13 @@
 const utils = require('../utils/index')
 const options = require('../utils/options')
 
+
 // support:
-// padding: '1'
-// padding: '1 2'
-// padding: '1 2 3'
-// padding: '1 2 3 4'
+// margin: '1'
+// margin: '1 2'
+// margin: '1 2 3'
+// margin: '1 2 3 4'
+
 module.exports = function(path, t) {
     const { key, value } = path.node;
     const fullValue = utils.splitBoxValue(value.value);
@@ -13,7 +15,7 @@ module.exports = function(path, t) {
         return;
     }
 
-    const properties = ['paddingTop', 'paddingRight', 'paddingBottom', 'paddingLeft']
+    const properties = ['marginTop', 'marginRight', 'marginBottom', 'marginLeft']
     path.replaceWithMultiple(
         properties.map((v, i) => (
             t.objectProperty(

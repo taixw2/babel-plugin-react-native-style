@@ -1,22 +1,33 @@
-const options = require('./utils/options')
+const compose = require('./utils/compose')
 const converters = require('./converters/index')
 
 module.exports = ({ types: t }) => {
     return {
       name: 'babel-plugin-react-native-style',
       visitor: {
-
-        Program(path, { opts }) {
-          converters.runtime(path, t);
+        CallExpression: {
+          enter(path, state) {
+            compose.compose('CallExpression')({ path, t, state, enter: true });
+          },
+          exit(path, state) {
+            compose.compose('CallExpression')({ path, t, state, exit: true });
+          },
         },
 
-        ObjectProperty(path, { opts }) {
-          const { node: { key, value } } = path;
-          if (!t.isIdentifier(key)) return;
-          if (!converters[key.name]) return;
-          Object.keys(opts || {}).forEach(key => options.set(key, opts[key]));
-          converters[key.name](path, t);
-        },
+        ObjectProperty: {
+          enter(path, state) {
+            compose.compose('ObjectProperty')({ path, t, state, enter: true });
+          },
+          exit(path, state) {
+            compose.compose('ObjectProperty')({ path, t, state, exit: true });
+          },
+        }
+        // (path, { opts }) {
+        //   // Object.keys(opts || {}).forEach(key => options.set(key, opts[key]));
+        //   // if (!t.isIdentifier(key)) return;
+        //   // if (!converters[key.name]) return;
+        //   // converters[key.name](path, t);
+        // },
       }
     }
 }

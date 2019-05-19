@@ -1,3 +1,6 @@
+const compose = require('../utils/compose')
 
-exports.padding = require('./padding')
-exports.runtime = require('./runtime')
+// compose.use(require('./padding')， 'ObjectProperty')
+// compose.use(require('./margin')， 'ObjectProperty')
+compose.use(require('./border'), 'ObjectProperty')
+
