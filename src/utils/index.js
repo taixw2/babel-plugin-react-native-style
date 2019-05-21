@@ -1,4 +1,7 @@
-const t = require('babel-types')
+const t = require('babel-types');
+
+const enums = require('./enum');
+
 
 exports.identifierIsEqual = (identifier, value) => {
   if (!t.isIdentifier(identifier)) {
@@ -55,18 +58,34 @@ exports.insertImport = (id, path, source, t) => {
   ))
 }
 
-exports.insertValue = (value, t, autorpx) => {
-  let _value = value;
-  const valueIsNumber = Number(_value) === Number(_value);
-  if (!autorpx.enable || !valueIsNumber) {
-    if (/pt$/.test(_value)) {
-      _value = _value.replace('pt', '')
-    }
-    return valueIsNumber ? t.numericLiteral(Number(_value)) : t.stringLiteral(_value);
+exports.insertValue = (value, opts) => {
+  // 如果不是启动了 rpx， 如果是数字， 则返回 rpx
+  const originValue = value.value;
+
+  if (t.isNumericLiteral(value) && opts.rpx.enable) {
+    return t.callExpression(
+      t.identifier('__RPX'),
+      [value, t.numericLiteral(opts.rpx.size)]
+    );
   }
 
-  return t.callExpression(
-    t.identifier('__RPX'),
-    [t.numericLiteral(Number(value)), t.numericLiteral(Number(autorpx.size))]
-  );
+  // 123pt => 123
+  if (/\d+pt$/.test(originValue)) {
+    return t.numericLiteral(originValue.replace('pt', ''));
+  }
+
+  // return origin value
+  return value;
+}
+
+exports.isValidColor = (color) => {
+  let _value = value;
+
+  enums.colors.some(v => {
+    if (typeof v === 'string') {
+      return v === color.trim();
+    }
+
+    return v.test(color.replace(/\s/g, ''));
+  })
 }

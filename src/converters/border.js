@@ -1,4 +1,6 @@
 const utils = require('../utils/index')
+const opts = require('../utils/opts')
+const enums = require('../utils/enum')
 
 
 // support:
@@ -18,31 +20,46 @@ module.exports = function({ path, state, t }, next) {
   let style = 'solid';
   let color = '#000';
 
-  const borderStyles = ['solid', 'dotted', 'dashed'];
   const values = value.value.split(' ');
-  if (values.length === 1) {
-    if (Number(values[0]) === Number(values[0])) {
-      width = Number(values[0]);
+
+  function setValue(value) {
+    if (Number(value) === Number(values[0])) {
+      width = Number(value);
+      return
     }
 
-    if (['solid', 'dotted', 'dashed'].includes) {}
+    if (enums.borderStyle.includes(value)) {
+      style = value;
+      return
+    }
 
+    if (utils.isValidColor(value)) {
+      color = value;
+    }
   }
 
-  // console.info('propertyName', propertyName, value)
+  if (values.length === 1) {
+    setValue(values[0])
+  }
+  if (values.length === 2) {
+    setValue(values[0])
+    setValue(values[1])
+  }
+  if (values.length === 3) {
+    setValue(values[0])
+    setValue(values[1])
+    setValue(values[3])
+  }
 
-  // const fullValue = utils.splitBoxValue(value.value);
-  // if (fullValue.some(v => !utils.isValidValue(v))) {
-  //   return;
-  // }
+  const widthIdentifier = t.identifier(`${propertyName}Width`);
+  const styleIdentifier = t.identifier(`${propertyName}Style`);
+  const colorIdentifier = t.identifier(`${propertyName}Color`);
 
-  // const properties = ['marginTop', 'marginRight', 'marginBottom', 'marginLeft']
-  // path.replaceWithMultiple(
-  //   properties.map((v, i) => (
-  //     t.objectProperty(
-  //       t.identifier(v),
-  //       utils.insertValue(fullValue[i], t, options.get('autorpx'))
-  //     )
-  //   ))
-  // );
+  path.replaceWithMultiple(
+    [
+      t.objectProperty(widthIdentifier, utils.insertValue(t.numericLiteral(width), opts(state.opts))),
+      t.objectProperty(styleIdentifier, t.stringLiteral(style)),
+      t.objectProperty(colorIdentifier, t.stringLiteral(color)),
+    ]
+  );
 }

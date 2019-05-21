@@ -3,7 +3,7 @@ exports.borderStyle = ['solid', 'dotted', 'dashed'];
 exports.colors = [
   /(^#[\w\d]{3}$)|(^#[\w\d]{6}$)|(^#[\w\d]{8}$)/,
   /^rgb\(\w{1,3}\,\w{1,3}\,\w{1,3}\)$/,
-  /^rgba\(\w{1,3}\,\w{1,3}\,\w{1,3}\,[0-1]\.*[0-9]*)$/,
+  /^rgba\(\w{1,3}\,\w{1,3}\,\w{1,3}\,[0-1]\.*[0-9]*\)$/,
   'transparent',
   'aliceblue',
   'antiquewhite',
