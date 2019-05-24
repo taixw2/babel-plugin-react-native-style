@@ -2,14 +2,6 @@ const t = require('babel-types');
 
 const enums = require('./enum');
 
-
-exports.identifierIsEqual = (identifier, value) => {
-  if (!t.isIdentifier(identifier)) {
-    return false
-  }
-  return identifier.name === value;
-}
-
 /**
  * array[top, right, bottom, left]
  */
@@ -41,7 +33,7 @@ exports.isValidValue = (value) => {
 /**
  * 100pt, 100.00pt, 100rpx, 100%, auto
  */
-exports.insertImport = (id, path, source, t) => {
+exports.insertImport = (id, path, source) => {
   const program = path.findParent((path) => path.isProgram());
   const node = program.node;
 
@@ -55,6 +47,25 @@ exports.insertImport = (id, path, source, t) => {
       t.importSpecifier(t.identifier(id), t.identifier(id))
     ],
     t.stringLiteral(source)
+  ))
+}
+
+exports.inertRPXImport = (path) => {
+  const program = path.findParent((path) => path.isProgram());
+  const runtimeRef = `babel-plugin-react-native-style/src/runtime/index`;
+
+
+  const imported = program.node.body.some(v => {
+    if (!t.isImportDeclaration(v)) { return false }
+    return v.specifiers.some(spe => spe.imported.name === '__RPX')
+  })
+  if (imported) { return }
+
+  program.node.body.unshift(t.importDeclaration(
+    [
+      t.importSpecifier(t.identifier('__RPX'), t.identifier('__RPX'))
+    ],
+    t.stringLiteral(runtimeRef)
   ))
 }
 
