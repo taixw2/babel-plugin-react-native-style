@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`babel-plugin-react-native-style border test: border test 1`] = `
+"
+const styles = stylesheet.create({ border: 'solid', borderLeft: '1 solid', borderLeftColor: '#fff' })
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import { __RPX } from 'babel-plugin-react-native-style/src/runtime/index';
+const styles = stylesheet.create({
+  borderWidth: 1,
+  borderStyle: 'solid',
+  borderColor: '#000',
+  borderLeftWidth: 1,
+  borderLeftStyle: 'solid',
+  borderLeftColor: '#000',
+  borderLeftColor: '#fff' });
+"
+`;
