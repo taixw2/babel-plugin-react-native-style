@@ -1,25 +1,32 @@
-const utils = require('../utils/index')
-const options = require('../utils/options')
+const valueUtil = require('../utils/value');
 
 // support:
-// padding: '1'
-// padding: '1 2'
-// padding: '1 2 3'
-// padding: '1 2 3 4'
-module.exports = function(path, t) {
-    const { key, value } = path.node;
-    const fullValue = utils.splitBoxValue(value.value);
-    if (fullValue.some(v => !utils.isValidValue(v))) {
-        return;
-    }
+module.exports = ({ path, state, t, enter }, next) => {
+  if (!enter) return next();
+  if (!path.node) return next();
+  const { key, value } = path.node;
+  const properties = ['paddingTop', 'paddingRight', 'paddingBottom', 'paddingLeft'];
 
-    const properties = ['paddingTop', 'paddingRight', 'paddingBottom', 'paddingLeft']
-    path.replaceWithMultiple(
-        properties.map((v, i) => (
-            t.objectProperty(
-                t.identifier(v),
-                utils.insertValue(fullValue[i], t, options.get('autorpx'))
-            )
-        ))
-    );
-}
+  if (properties.some((property) => property === key.name)) {
+    // console.log('TCL: value', value.value, key.name);
+    path.node.value = valueUtil.gen(value, state.opts);
+    return next();
+  }
+  if (key.name !== 'padding') return next();
+
+  console.log('TCL: value.value', value.value, key.name);
+  const values = valueUtil.split(value.value);
+  if (!values || values.some((v) => !valueUtil.isValid(v))) {
+    return next();
+  }
+
+  console.log('TCL: value', value.value, key.name);
+  path.replaceWithMultiple(
+    properties.map((v, i) => {
+      const propertyKey = t.identifier(v);
+      const propertyValue = valueUtil.genPlain(values[i]);
+      return t.objectProperty(propertyKey, propertyValue);
+    }),
+  );
+  return next();
+};

@@ -1,27 +1,34 @@
-const utils = require('../utils/index')
-const options = require('../utils/options')
-
+const valueUtil = require('../utils/value');
 
 // support:
 // margin: '1'
 // margin: '1 2'
 // margin: '1 2 3'
 // margin: '1 2 3 4'
+module.exports = ({ path, state, t, enter }, next) => {
+  if (!enter) return next();
+  if (!path.node) return next();
+  const { key, value } = path.node;
+  const properties = ['marginTop', 'marginRight', 'marginBottom', 'marginLeft'];
 
-module.exports = function(path, t) {
-    const { key, value } = path.node;
-    const fullValue = utils.splitBoxValue(value.value);
-    if (fullValue.some(v => !utils.isValidValue(v))) {
-        return;
-    }
+  if (properties.some((property) => property === key.name)) {
+    path.node.value = valueUtil.gen(value, state.opts);
+    return next();
+  }
+  if (key.name !== 'margin') return next();
 
-    const properties = ['marginTop', 'marginRight', 'marginBottom', 'marginLeft']
-    path.replaceWithMultiple(
-        properties.map((v, i) => (
-            t.objectProperty(
-                t.identifier(v),
-                utils.insertValue(fullValue[i], t, options.get('autorpx'))
-            )
-        ))
-    );
-}
+  const values = valueUtil.split(value.value);
+  // 值无效
+  if (!values || values.some((v) => !valueUtil.isValid(v))) {
+    return next();
+  }
+
+  path.replaceWithMultiple(
+    properties.map((v, i) => {
+      const propertyKey = t.identifier(v);
+      const propertyValue = valueUtil.genPlain(values[i]);
+      return t.objectProperty(propertyKey, propertyValue);
+    }),
+  );
+  return next();
+};

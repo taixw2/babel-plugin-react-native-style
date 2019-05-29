@@ -1,4 +1,3 @@
-const enums = require('../utils/enum');
 const validation = require('../utils/validation');
 const valueUtil = require('../utils/value');
 
@@ -9,6 +8,7 @@ const valueUtil = require('../utils/value');
 // border: 'solid #000'    // style color
 // border: '1 solid #000'    // width style color
 module.exports = ({ path, state, t }, next) => {
+  if (!path.node) return next();
   const { key, value } = path.node;
   const [propertyName] = key.name.match(/^border[Left|Right|Top|Bottom]*$/) || [];
   if (!propertyName) return next();
@@ -26,12 +26,10 @@ module.exports = ({ path, state, t }, next) => {
         width = Number(v);
         return;
       }
-
-      if (enums.borderStyle.includes(v)) {
+      if (validation.borderStyle(v)) {
         style = v;
         return;
       }
-
       if (validation.color(v)) {
         color = v;
       }

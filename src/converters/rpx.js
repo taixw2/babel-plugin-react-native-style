@@ -1,18 +1,19 @@
 // normal value convert
-
-const utils = require('../utils/index');
-const opts = require('../utils/opts');
-const enums = require('../utils/enum');
+const validation = require('../utils/validation');
+const valueUtil = require('../utils/value');
+const bom = require('../utils/bom');
+const _ = require('lodash');
 
 module.exports = ({ path, state, enter }, next) => {
   if (!enter) return next();
+  if (!path.node) return next();
 
   const { key, value } = path.node;
-  const property = enums.widthProperties.filter(pro => pro === key.name)[0];
   // 不需要转换
-  if (!property) return next();
+  if (!validation.pointProperty(key.name)) return next();
 
-  path.node.value = utils.insertValue(value, opts(state.opts));
-  utils.inertRPXImport(path);
+  if (!_.isFinite(Number(value.value))) return next();
+  path.node.value = valueUtil.gen(value, state.opts);
+  bom.insertRPXReference(path);
   return next();
 };
