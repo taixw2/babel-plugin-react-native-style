@@ -1,10 +1,9 @@
+const _ = require('lodash');
 
-
-module.exports = function(opts = {}) {
-
-
-	return {
-		rpx: { enable: false, size: 750 },
-		...opts
-	}
-}
+module.exports = (opts = {}) =>
+  _.defaultsDeep(
+    {
+      rpx: { enable: false, size: 750 },
+    },
+    opts,
+  );
