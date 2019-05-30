@@ -1,0 +1,9 @@
+{
+  "extends": "airbnb-base",
+  "rules": {
+    "no-param-reassign": "off",
+    "arrow-parens": "off",
+    "function-paren-newline": "off",
+    "object-curly-newline": "off"
+  }
+}

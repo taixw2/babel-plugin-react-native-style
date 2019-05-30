@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`babel-plugin-react-native-style margin test: margin test 1`] = `
+"
+const styles = stylesheet.create({
+  one: { margin: 0 },
+  two: { margin: '10 1' },
+  three: { margin: '10 1 5' },
+  four: { margin: '10 1 5 3' },
+  five: { margin: '10 auto 5' },
+})
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import { __RPX } from 'babel-plugin-react-native-style/src/runtime/index';
+const styles = stylesheet.create({
+  one: { margin: __RPX(0, 750) },
+  two: {
+    marginTop: __RPX(10, 750),
+    marginRight: __RPX(1, 750),
+    marginBottom: __RPX(10, 750),
+    marginLeft: __RPX(1, 750)
+  },
+  three: {
+    marginTop: __RPX(10, 750),
+    marginRight: __RPX(1, 750),
+    marginBottom: __RPX(5, 750),
+    marginLeft: __RPX(1, 750)
+  },
+  four: {
+    marginTop: __RPX(10, 750),
+    marginRight: __RPX(1, 750),
+    marginBottom: __RPX(5, 750),
+    marginLeft: __RPX(3, 750)
+  },
+  five: {
+    marginTop: __RPX(10, 750),
+    marginRight: 'auto',
+    marginBottom: __RPX(5, 750),
+    marginLeft: 'auto'
+  }
+});
+"
+`;

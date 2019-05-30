@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`babel-plugin-react-native-style rpx convert: rpx convert 1`] = `
+"
+const styles = stylesheet.create({ padding: 1 })
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import { __RPX } from \\"babel-plugin-react-native-style/src/runtime/index\\";
+const styles = stylesheet.create({ padding: __RPX(1, 750) });
+"
+`;

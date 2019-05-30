@@ -1,0 +1,12 @@
+sudo: false
+language: node_js
+node_js:
+  - 8
+  - 9
+  - 10
+install: npm install
+script: npm test
+os:
+  - linux
+  - osx
+after_script: npm run coveralls
