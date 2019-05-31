@@ -61,17 +61,13 @@ module.exports = {
   },
 
   genPlain(plainValue) {
-    let value = null;
     if (_.isFinite(Number(plainValue))) {
-      value = t.numericLiteral(Number(plainValue));
+      return t.numericLiteral(Number(plainValue));
     }
     if (_.isString(plainValue)) {
-      value = t.stringLiteral(plainValue);
+      return t.stringLiteral(plainValue);
     }
 
-    if (!value) {
-      throw new Error(`value invalid: ${plainValue}`);
-    }
-    return value;
+    throw new Error(`value invalid: ${plainValue}`);
   },
 };
