@@ -8,8 +8,11 @@ pluginTester({
     {
       snapshot: true,
       title: 'border test',
-      code:
-        "const styles = stylesheet.create({ border: 'solid', borderLeft: '1 solid', borderLeftColor: '#fff' })",
+      pluginOptions: { rpx: { enable: true, size: 750 } },
+      code: `const styles = stylesheet.create({
+          one: { border: 'solid', borderLeft: '1 solid', borderLeftColor: '#fff' },
+          two: { borderLeft: '1pt solid', borderLeftColor: '#fff' },
+        })`,
     },
   ],
 });

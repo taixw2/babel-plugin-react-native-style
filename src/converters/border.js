@@ -22,8 +22,8 @@ module.exports = ({ path, state, t }, next) => {
     .slice(0, 3)
     .forEach((v) => {
       // 是一个数字
-      if (Number.isFinite(Number(v))) {
-        width = Number(v);
+      if (validation.value(v)) {
+        width = v;
         return;
       }
       if (validation.borderStyle(v)) {
@@ -39,7 +39,7 @@ module.exports = ({ path, state, t }, next) => {
   const styleIdentifier = t.identifier(`${propertyName}Style`);
   const colorIdentifier = t.identifier(`${propertyName}Color`);
   path.replaceWithMultiple([
-    t.objectProperty(widthIdentifier, valueUtil.gen(t.numericLiteral(width), state.opts)),
+    t.objectProperty(widthIdentifier, valueUtil.genPlain(width, state.opts)),
     t.objectProperty(styleIdentifier, t.stringLiteral(style)),
     t.objectProperty(colorIdentifier, t.stringLiteral(color)),
   ]);
