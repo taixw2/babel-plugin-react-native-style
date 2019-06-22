@@ -10,7 +10,7 @@ pluginTester({
       title: 'border test',
       pluginOptions: { rpx: { enable: true, size: 750 } },
       code: `const styles = stylesheet.create({
-          one: { border: 'solid', borderLeft: '1 solid', borderLeftColor: '#fff' },
+          one: { border: 'solid #efe', borderLeft: '1 solid', borderLeftColor: '#fff' },
           two: { borderLeft: '1pt solid', borderLeftColor: '#fff' },
         })`,
     },

@@ -2,18 +2,28 @@
 
 exports[`babel-plugin-react-native-style border test: border test 1`] = `
 "
-const styles = stylesheet.create({ border: 'solid', borderLeft: '1 solid', borderLeftColor: '#fff' })
+const styles = stylesheet.create({
+          one: { border: 'solid #efe', borderLeft: '1 solid', borderLeftColor: '#fff' },
+          two: { borderLeft: '1pt solid', borderLeftColor: '#fff' },
+        })
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
 import { __RPX } from 'babel-plugin-react-native-style/src/runtime/index';
 const styles = stylesheet.create({
-  borderWidth: 1,
-  borderStyle: 'solid',
-  borderColor: '#000',
-  borderLeftWidth: 1,
-  borderLeftStyle: 'solid',
-  borderLeftColor: '#000',
-  borderLeftColor: '#fff' });
+          one: {
+                    borderWidth: __RPX(1, 750),
+                    borderStyle: 'solid',
+                    borderColor: '#efe',
+                    borderLeftWidth: __RPX(1, 750),
+                    borderLeftStyle: 'solid',
+                    borderLeftColor: '#000',
+                    borderLeftColor: '#fff' },
+          two: {
+                    borderLeftWidth: 1,
+                    borderLeftStyle: 'solid',
+                    borderLeftColor: '#000',
+                    borderLeftColor: '#fff' }
+});
 "
 `;
