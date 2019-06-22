@@ -1,13 +1,15 @@
 /* eslint-disable no-use-before-define */
 const middlewares = {};
 
-exports.use = (fn, type) => {
+exports.use = (fn, ...types) => {
   if (typeof fn !== 'function') throw new TypeError('must be a function!');
 
-  if (!middlewares[type]) {
-    middlewares[type] = [];
-  }
-  middlewares[type].push(fn);
+  types.forEach((type) => {
+    if (!middlewares[type]) {
+      middlewares[type] = [];
+    }
+    middlewares[type].push(fn);
+  });
 };
 
 exports.compose = (type) => {

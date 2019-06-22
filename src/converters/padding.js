@@ -1,4 +1,5 @@
 const valueUtil = require('../utils/value');
+const validationUtil = require('../utils/validation');
 
 // support:
 module.exports = ({ path, t, enter }, next) => {
@@ -9,7 +10,7 @@ module.exports = ({ path, t, enter }, next) => {
   if (key.name !== 'padding') return next();
 
   const values = valueUtil.split(value.value);
-  if (!values || values.some((v) => !valueUtil.isValid(v))) {
+  if (!values || values.some((v) => !validationUtil.value(v))) {
     return next();
   }
 

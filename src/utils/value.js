@@ -14,7 +14,6 @@ module.exports = {
     let right = 0;
     let bottom = 0;
     let left = 0;
-    // console.log('TCL: split -> value', value);
     if (!value) return null;
     const values = String(value)
       .split(' ')
@@ -36,12 +35,6 @@ module.exports = {
       [top, right, bottom, left] = values;
     }
     return [top, right, bottom, left];
-  },
-
-  isValid(value) {
-    if (value === 'auto') return true;
-    if (/^(\d+(\.\d+)?|\.\d+|\d+)?(%|pt|rpx)*$/.test(value)) return true;
-    return false;
   },
 
   gen(node, opts) {

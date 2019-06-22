@@ -1,4 +1,5 @@
 const valueUtil = require('../utils/value');
+const validationUtil = require('../utils/validation');
 
 // support:
 // margin: '1'
@@ -14,7 +15,7 @@ module.exports = ({ path, t, enter }, next) => {
 
   const values = valueUtil.split(value.value);
   // 值无效
-  if (!values || values.some((v) => !valueUtil.isValid(v))) {
+  if (!values || values.some((v) => !validationUtil.value(v))) {
     return next();
   }
 
