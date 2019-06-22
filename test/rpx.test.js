@@ -12,5 +12,11 @@ pluginTester({
       pluginOptions: { rpx: { enable: true, size: 750 } },
       code: 'const styles = stylesheet.create({ padding: 1 })',
     },
+    {
+      snapshot: true,
+      title: 'specific rpx',
+      pluginOptions: { rpx: { enable: false, size: 750 } },
+      code: 'const styles = stylesheet.create({ padding: "1rpx" })',
+    },
   ],
 });

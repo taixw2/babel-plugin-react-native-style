@@ -3,6 +3,7 @@
 
 const t = require('babel-types');
 const defaultOpts = require('./opts');
+const validation = require('./validation');
 const _ = require('lodash');
 
 module.exports = {
@@ -43,21 +44,36 @@ module.exports = {
     return false;
   },
 
-  gen(value, opts) {
+  gen(node, opts) {
     const options = defaultOpts(opts);
-    if (t.isNumericLiteral(value) && options.rpx.enable) {
+    if (!validation.value(node.value)) {
+      return node.value;
+    }
+
+    function callExpression(_node) {
       return t.callExpression(t.identifier('__RPX'), [
-        value,
+        _node,
         t.numericLiteral(opts.rpx.size || 750),
       ]);
     }
-    if (/\d+pt$/.test(value.value)) {
-      return t.numericLiteral(Number(value.value.replace('pt', '')));
+
+    // 数字， 并且默认启动 rpx: { padding: 1 }
+    if (options.rpx.enable && _.isFinite(Number(node.value))) {
+      return callExpression(node);
     }
-    if (_.isFinite(Number(value.value))) {
-      return t.numericLiteral(Number(value.value));
+
+    // 显示声明 rpx: { padding: '1rpx' }
+    if (/.+rpx$/.test(node.value)) {
+      node.value = Number(node.value.replace('rpx', ''));
+      return callExpression(node);
     }
-    return value;
+
+    // 带 pt 结尾的： { padding: '1pt' }
+    if (/\d+pt$/.test(node.value)) {
+      return t.numericLiteral(Number(node.value.replace('pt', '')));
+    }
+
+    return node;
   },
 
   genPlain(plainValue) {

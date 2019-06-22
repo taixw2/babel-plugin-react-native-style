@@ -15,3 +15,19 @@ const styles = stylesheet.create({
 });
 "
 `;
+
+exports[`babel-plugin-react-native-style specific rpx: specific rpx 1`] = `
+"
+const styles = stylesheet.create({ padding: \\"1rpx\\" })
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import { __RPX } from \\"babel-plugin-react-native-style/src/runtime/index\\";
+const styles = stylesheet.create({
+  paddingTop: __RPX(1, 750),
+  paddingRight: __RPX(1, 750),
+  paddingBottom: __RPX(1, 750),
+  paddingLeft: __RPX(1, 750)
+});
+"
+`;

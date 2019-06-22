@@ -22,5 +22,13 @@ module.exports = ({ types: t }) => ({
         compose.compose('ObjectProperty')({ path, t, state, exit: true });
       },
     },
+    StringLiteral: {
+      enter(path, state) {
+        compose.compose('StringLiteral')({ path, t, state, enter: true });
+      },
+      exit(path, state) {
+        compose.compose('StringLiteral')({ path, t, state, exit: true });
+      },
+    },
   },
 });
