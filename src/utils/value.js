@@ -37,28 +37,40 @@ module.exports = {
     return [top, right, bottom, left];
   },
 
+  callRPX(node, opts) {
+    const options = defaultOpts(opts);
+    return t.callExpression(t.identifier('__RPX'), [node, t.numericLiteral(options.rpx.size || 750)]);
+  },
+
+  specialRPX(node, opts) {
+    const options = defaultOpts(opts);
+    if (!validation.value(node.value)) {
+      return node;
+    }
+
+    if (/.+rpx$/.test(node.value)) {
+      node.value = Number(node.value.replace('rpx', ''));
+      return this.callRPX(node, options);
+    }
+
+    return node;
+  },
+
   gen(node, opts) {
     const options = defaultOpts(opts);
     if (!validation.value(node.value)) {
-      return node.value;
-    }
-
-    function callExpression(_node) {
-      return t.callExpression(t.identifier('__RPX'), [
-        _node,
-        t.numericLiteral(opts.rpx.size || 750),
-      ]);
+      return node;
     }
 
     // 数字， 并且默认启动 rpx: { padding: 1 }
     if (options.rpx.enable && _.isFinite(Number(node.value))) {
-      return callExpression(node);
+      return this.callRPX(node, options);
     }
 
     // 显示声明 rpx: { padding: '1rpx' }
     if (/.+rpx$/.test(node.value)) {
       node.value = Number(node.value.replace('rpx', ''));
-      return callExpression(node);
+      return this.callRPX(node, options);
     }
 
     // 带 pt 结尾的： { padding: '1pt' }
