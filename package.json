@@ -1,6 +1,6 @@
 {
   "name": "babel-plugin-react-native-style",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Improve the writing stylesheet experience",
   "main": "src/index.js",
   "repository": {
@@ -29,6 +29,7 @@
   "jest": {
     "testURL": "http://localhost/",
     "testRegex": "test/.*(test|spec).js?$",
+    "collectCoverage": true,
     "collectCoverageFrom": [
       "src/**/*.js"
     ],
@@ -71,5 +72,8 @@
   "dependencies": {
     "babel-types": "^6.26.0",
     "lodash": "^4.17.11"
+  },
+  "peerDependencies": {
+    "react-native": "^0.50.0"
   }
 }
