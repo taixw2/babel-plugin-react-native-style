@@ -8,11 +8,10 @@ const validationUtil = require('../utils/validation');
 // margin: '1 2 3 4'
 module.exports = ({ path, t, enter }, next) => {
   if (!enter) return next();
-  if (!path.node) return next();
+  if (!validationUtil.plainObjectProperty(path.node)) return next();
   const { key, value } = path.node;
   const properties = ['marginTop', 'marginRight', 'marginBottom', 'marginLeft'];
   if (key.name !== 'margin') return next();
-  if (!t.isLiteral(value)) return next();
 
   const values = valueUtil.split(value.value);
   // 值无效

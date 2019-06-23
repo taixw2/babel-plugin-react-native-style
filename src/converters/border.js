@@ -1,5 +1,5 @@
 const t = require('babel-types');
-const validation = require('../utils/validation');
+const validationUtil = require('../utils/validation');
 const valueUtil = require('../utils/value');
 
 // support:
@@ -9,11 +9,10 @@ const valueUtil = require('../utils/value');
 // border: 'solid #000'    // style color
 // border: '1 solid #000'    // width style color
 module.exports = ({ path, state }, next) => {
-  if (!path.node) return next();
+  if (!validationUtil.plainObjectProperty(path.node)) return next();
   const { key, value } = path.node;
   const [propertyName] = key.name.match(/^border[Left|Right|Top|Bottom]*$/) || [];
   if (!propertyName) return next();
-  if (!t.isLiteral(value)) return next();
 
   let width = 1;
   let style = 'solid';
@@ -24,15 +23,15 @@ module.exports = ({ path, state }, next) => {
     .slice(0, 3)
     .forEach((v) => {
       // 是一个数字
-      if (validation.value(v)) {
+      if (validationUtil.value(v)) {
         width = v;
         return;
       }
-      if (validation.borderStyle(v)) {
+      if (validationUtil.borderStyle(v)) {
         style = v;
         return;
       }
-      if (validation.color(v)) {
+      if (validationUtil.color(v)) {
         color = v;
       }
     });

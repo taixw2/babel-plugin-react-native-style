@@ -1,8 +1,13 @@
 /* eslint-disable arrow-parens */
 const enums = require('./enum');
+const t = require('babel-types');
 const _ = require('lodash');
 
 module.exports = {
+  plainObjectProperty(node) {
+    return node && t.isLiteral(node.key) && t.isLiteral(node.value);
+  },
+
   value(value) {
     if (value === 'auto') return true;
     if (/^(\d+(\.\d+)?|\.\d+|\d+)?(%|pt|rpx)*$/.test(value)) return true;

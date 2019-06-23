@@ -4,10 +4,9 @@ const validationUtil = require('../utils/validation');
 
 module.exports = ({ path, enter }, next) => {
   if (!enter) return next();
-  if (!path.node) return next();
+  if (!validationUtil.plainObjectProperty(path.node)) return next();
   const { key, value } = path.node;
   if (key.name !== 'borderRadius') return next();
-  if (!t.isLiteral(value)) return next();
 
   const properties = [
     'borderTopLeftRadius',
