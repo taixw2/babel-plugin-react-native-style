@@ -15,7 +15,7 @@ module.exports = {
 
   color(color) {
     const colorWithoutSpaces = color.replace(/\s/g, '');
-    enums.colors.some((pattern) => {
+    return enums.colors.some((pattern) => {
       if (_.isString(pattern)) {
         return pattern === colorWithoutSpaces;
       }

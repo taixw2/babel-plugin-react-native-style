@@ -2,10 +2,13 @@
 
 Improve the writing stylesheet experience
 
+[![Package Quality](https://npm.packagequality.com/shield/babel-plugin-react-native-style.svg?style=flat)](https://packagequality.com/#?package=babel-plugin-react-native-style)
+[![Travis](https://img.shields.io/travis/taixw2/babel-plugin-react-native-style.svg?style=flat)](https://travis-ci.org/taixw2/babel-plugin-react-native-style)
+
 This plugin is a highly recommended supplement to the base stylesheet library of react native, offering some useful features:
 
 - compilation rpx
-- supporting space values: `padding: "20 20 10"`
+- supporting space values: `padding: "20rpx 20pt 10"`
 
 ## Quick start
 

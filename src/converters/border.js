@@ -1,3 +1,4 @@
+const t = require('babel-types');
 const validation = require('../utils/validation');
 const valueUtil = require('../utils/value');
 
@@ -7,11 +8,12 @@ const valueUtil = require('../utils/value');
 // border: '1 solid'    // width style
 // border: 'solid #000'    // style color
 // border: '1 solid #000'    // width style color
-module.exports = ({ path, state, t }, next) => {
+module.exports = ({ path, state }, next) => {
   if (!path.node) return next();
   const { key, value } = path.node;
   const [propertyName] = key.name.match(/^border[Left|Right|Top|Bottom]*$/) || [];
   if (!propertyName) return next();
+  if (!t.isLiteral(value)) return next();
 
   let width = 1;
   let style = 'solid';
@@ -22,8 +24,8 @@ module.exports = ({ path, state, t }, next) => {
     .slice(0, 3)
     .forEach((v) => {
       // 是一个数字
-      if (Number.isFinite(Number(v))) {
-        width = Number(v);
+      if (validation.value(v)) {
+        width = v;
         return;
       }
       if (validation.borderStyle(v)) {
@@ -39,7 +41,7 @@ module.exports = ({ path, state, t }, next) => {
   const styleIdentifier = t.identifier(`${propertyName}Style`);
   const colorIdentifier = t.identifier(`${propertyName}Color`);
   path.replaceWithMultiple([
-    t.objectProperty(widthIdentifier, valueUtil.gen(t.numericLiteral(width), state.opts)),
+    t.objectProperty(widthIdentifier, valueUtil.genPlain(width, state.opts)),
     t.objectProperty(styleIdentifier, t.stringLiteral(style)),
     t.objectProperty(colorIdentifier, t.stringLiteral(color)),
   ]);

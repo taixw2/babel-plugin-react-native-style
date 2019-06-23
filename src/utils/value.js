@@ -3,6 +3,7 @@
 
 const t = require('babel-types');
 const defaultOpts = require('./opts');
+const validation = require('./validation');
 const _ = require('lodash');
 
 module.exports = {
@@ -13,7 +14,6 @@ module.exports = {
     let right = 0;
     let bottom = 0;
     let left = 0;
-    // console.log('TCL: split -> value', value);
     if (!value) return null;
     const values = String(value)
       .split(' ')
@@ -37,41 +37,58 @@ module.exports = {
     return [top, right, bottom, left];
   },
 
-  isValid(value) {
-    if (value === 'auto') return true;
-    if (/^(\d+(\.\d+)?|\.\d+|\d+)?(%|pt|rpx)*$/.test(value)) return true;
-    return false;
+  callRPX(node, opts) {
+    const options = defaultOpts(opts);
+    return t.callExpression(t.identifier('__RPX'), [node, t.numericLiteral(options.rpx.size || 750)]);
   },
 
-  gen(value, opts) {
+  specialRPX(node, opts) {
     const options = defaultOpts(opts);
-    if (t.isNumericLiteral(value) && options.rpx.enable) {
-      return t.callExpression(t.identifier('__RPX'), [
-        value,
-        t.numericLiteral(opts.rpx.size || 750),
-      ]);
+    if (!validation.value(node.value)) {
+      return node;
     }
-    if (/\d+pt$/.test(value.value)) {
-      return t.numericLiteral(Number(value.value.replace('pt', '')));
+
+    if (/.+rpx$/.test(node.value)) {
+      node.value = Number(node.value.replace('rpx', ''));
+      return this.callRPX(node, options);
     }
-    if (_.isFinite(Number(value.value))) {
-      return t.numericLiteral(Number(value.value));
+
+    return node;
+  },
+
+  gen(node, opts) {
+    const options = defaultOpts(opts);
+    if (!validation.value(node.value)) {
+      return node;
     }
-    return value;
+
+    // 数字， 并且默认启动 rpx: { padding: 1 }
+    if (options.rpx.enable && _.isFinite(Number(node.value))) {
+      return this.callRPX(node, options);
+    }
+
+    // 显示声明 rpx: { padding: '1rpx' }
+    if (/.+rpx$/.test(node.value)) {
+      node.value = Number(node.value.replace('rpx', ''));
+      return this.callRPX(node, options);
+    }
+
+    // 带 pt 结尾的： { padding: '1pt' }
+    if (/\d+pt$/.test(node.value)) {
+      return t.numericLiteral(Number(node.value.replace('pt', '')));
+    }
+
+    return node;
   },
 
   genPlain(plainValue) {
-    let value = null;
     if (_.isFinite(Number(plainValue))) {
-      value = t.numericLiteral(Number(plainValue));
+      return t.numericLiteral(Number(plainValue));
     }
     if (_.isString(plainValue)) {
-      value = t.stringLiteral(plainValue);
+      return t.stringLiteral(plainValue);
     }
 
-    if (!value) {
-      throw new Error(`value invalid: ${plainValue}`);
-    }
-    return value;
+    throw new Error(`value invalid: ${plainValue}`);
   },
 };

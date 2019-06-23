@@ -1,16 +1,23 @@
+const t = require('babel-types');
 const valueUtil = require('../utils/value');
 const validationUtil = require('../utils/validation');
 
-// support:
-module.exports = ({ path, t, enter }, next) => {
+module.exports = ({ path, enter }, next) => {
   if (!enter) return next();
   if (!path.node) return next();
   const { key, value } = path.node;
-  const properties = ['paddingTop', 'paddingRight', 'paddingBottom', 'paddingLeft'];
-  if (key.name !== 'padding') return next();
+  if (key.name !== 'borderRadius') return next();
   if (!t.isLiteral(value)) return next();
 
+  const properties = [
+    'borderTopLeftRadius',
+    'borderTopRightRadius',
+    'borderBottomRightRadius',
+    'borderBottomLeftRadius',
+  ];
+
   const values = valueUtil.split(value.value);
+  // 值无效
   if (!values || values.some((v) => !validationUtil.value(v))) {
     return next();
   }

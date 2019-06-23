@@ -1,25 +1,22 @@
 const valueUtil = require('../utils/value');
+const validationUtil = require('../utils/validation');
 
 // support:
 // margin: '1'
 // margin: '1 2'
 // margin: '1 2 3'
 // margin: '1 2 3 4'
-module.exports = ({ path, state, t, enter }, next) => {
+module.exports = ({ path, t, enter }, next) => {
   if (!enter) return next();
   if (!path.node) return next();
   const { key, value } = path.node;
   const properties = ['marginTop', 'marginRight', 'marginBottom', 'marginLeft'];
-
-  if (properties.some((property) => property === key.name)) {
-    path.node.value = valueUtil.gen(value, state.opts);
-    return next();
-  }
   if (key.name !== 'margin') return next();
+  if (!t.isLiteral(value)) return next();
 
   const values = valueUtil.split(value.value);
   // 值无效
-  if (!values || values.some((v) => !valueUtil.isValid(v))) {
+  if (!values || values.some((v) => !validationUtil.value(v))) {
     return next();
   }
 
