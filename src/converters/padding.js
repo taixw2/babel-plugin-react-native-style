@@ -8,6 +8,7 @@ module.exports = ({ path, t, enter }, next) => {
   const { key, value } = path.node;
   const properties = ['paddingTop', 'paddingRight', 'paddingBottom', 'paddingLeft'];
   if (key.name !== 'padding') return next();
+  if (!t.isLiteral(value)) return next();
 
   const values = valueUtil.split(value.value);
   if (!values || values.some((v) => !validationUtil.value(v))) {
