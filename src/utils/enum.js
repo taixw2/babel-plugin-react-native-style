@@ -57,8 +57,8 @@ exports.widthProperties = [
 
 exports.colors = [
   /(^#[\w\d]{3}$)|(^#[\w\d]{6}$)|(^#[\w\d]{8}$)/,
-  /^rgb\(\w{1,3}\s*,\w{1,3}\s*,\w{1,3}\)$/,
-  /^rgba\(\w{1,3}\s*,\w{1,3}\s*,\w{1,3}\s*,[0-1]\.*[0-9]*\)$/,
+  /^rgb\(\w{1,3}\s*,\s*\w{1,3}\s*,\s*\w{1,3}\)$/,
+  /^rgba\(\w{1,3}\s*,\s*\w{1,3}\s*,\s*\w{1,3}\s*,\s*[0-1]\.*[0-9]*\)$/,
   'transparent',
   'aliceblue',
   'antiquewhite',
