@@ -5,7 +5,10 @@ const _ = require('lodash');
 
 module.exports = {
   plainObjectProperty(node) {
-    return node && t.isLiteral(node.key) && t.isLiteral(node.value);
+    if (!node) return false;
+    if (!t.isLiteral(node.value)) return false;
+    if (!t.isIdentifier(node.key)) return false;
+    return true;
   },
 
   value(value) {
@@ -29,6 +32,7 @@ module.exports = {
   },
 
   pointProperty(pt) {
+    if (!pt) return false;
     return enums.widthProperties.some((v) => v === pt.trim());
   },
 };
