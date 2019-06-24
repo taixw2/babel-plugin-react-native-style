@@ -37,7 +37,7 @@ module.exports = ({ path, state }, next) => {
     });
 
   const widthIdentifier = t.identifier(`${propertyName}Width`);
-  const styleIdentifier = t.identifier(`${propertyName}Style`);
+  const styleIdentifier = t.identifier('borderStyle');
   const colorIdentifier = t.identifier(`${propertyName}Color`);
   path.replaceWithMultiple([
     t.objectProperty(widthIdentifier, valueUtil.genPlain(width, state.opts)),
