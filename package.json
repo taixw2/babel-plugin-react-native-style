@@ -74,6 +74,7 @@
     "lodash": "^4.17.11"
   },
   "peerDependencies": {
-    "react-native": "^0.50.0"
+    "react-native": "^0.50.0",
+    "babel-plugin-react-native-style-runtime": "~1.0.0"
   }
 }

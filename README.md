@@ -15,13 +15,13 @@ This plugin is a highly recommended supplement to the base stylesheet library of
 Install the plugin first:
 
 ```bash
-npm install babel-plugin-react-native-style --save-dev
+npm install babel-plugin-react-native-style-runtime babel-plugin-react-native-style --save-dev
 ```
 
 or use `yarn`
 
 ```bash
-yarn add babel-plugin-react-native-style -D
+yarn add babel-plugin-react-native-style-runtime babel-plugin-react-native-style -D
 ```
 
 Then add it to your babel configuration:

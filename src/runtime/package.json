@@ -1,0 +1,17 @@
+{
+  "name": "babel-plugin-react-native-style-runtime",
+  "version": "1.0.0",
+  "description": "babel-plugin-react-native-style 运行时",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "babel-plugin-react-native-style"
+  ],
+  "peerDependencies": {
+    "react-native": "^0.50.0"
+  },
+  "author": "iqqq",
+  "license": "MIT"
+}
