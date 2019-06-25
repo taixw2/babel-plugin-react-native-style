@@ -57,8 +57,8 @@ exports.widthProperties = [
 
 exports.colors = [
   /(^#[\w\d]{3}$)|(^#[\w\d]{6}$)|(^#[\w\d]{8}$)/,
-  /^rgb\(\w{1,3}\s*,\s*\w{1,3}\s*,\s*\w{1,3}\)$/,
-  /^rgba\(\w{1,3}\s*,\s*\w{1,3}\s*,\s*\w{1,3}\s*,\s*[0-1]\.*[0-9]*\)$/,
+  // @https://stackoverflow.com/questions/7543818/regex-javascript-to-match-both-rgb-and-rgba
+  /^rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)(?:,\s*(\d*(?:\.\d+)?))?\)$/,
   'transparent',
   'aliceblue',
   'antiquewhite',
