@@ -33,6 +33,32 @@ Then add it to your babel configuration:
 }
 ```
 
+## output
+```javascript
+// 1. border: '1 solid #fff'
+// --->output
+borderWidth: 1,
+borderStyle: 'solid',
+borderColor: '#fff',
+
+// 2. rpx
+height: '1rpx'
+// --->output
+var __RPX = require('babel-plugin-react-native-style-runtime').__RPX;
+height: __RPX(1)
+
+// 3. padding: '1 2rpx'
+// --->output
+var __RPX = require('babel-plugin-react-native-style-runtime').__RPX;
+paddingTop: 1,
+paddingBottom: 1,
+paddingLeft: __RPX(2),
+paddingRight: __RPX(2)
+
+// ...support list
+// padding, margin, border, borderRadius, ...
+```
+
 ## schedule
 - [ ] compilation rpx
 - [ ] native pt
