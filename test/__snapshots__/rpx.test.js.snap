@@ -6,7 +6,8 @@ const styles = stylesheet.create({ padding: 1 })
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import { __RPX } from \\"babel-plugin-react-native-style/src/runtime/index\\";
+var __RPX = require(\\"babel-plugin-react-native-style-runtime\\").__RPX;
+
 const styles = stylesheet.create({
   paddingTop: __RPX(1, 750),
   paddingRight: __RPX(1, 750),
@@ -24,7 +25,8 @@ const styles = stylesheet.create({ padding: \\"1rpx\\", height })
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import { __RPX } from \\"babel-plugin-react-native-style/src/runtime/index\\";
+var __RPX = require(\\"babel-plugin-react-native-style-runtime\\").__RPX;
+
 function call() {
   return 1;
 };

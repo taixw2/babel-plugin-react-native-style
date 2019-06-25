@@ -12,7 +12,8 @@ const styles = stylesheet.create({
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import { __RPX } from 'babel-plugin-react-native-style/src/runtime/index';
+var __RPX = require('babel-plugin-react-native-style-runtime').__RPX;
+
 const styles = stylesheet.create({
   one: { margin: __RPX(0, 750) },
   two: {

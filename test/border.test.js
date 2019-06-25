@@ -12,6 +12,7 @@ pluginTester({
       code: `const styles = stylesheet.create({
           one: { border: 'solid #efe', borderLeft: '1 solid', borderLeftColor: '#fff' },
           two: { borderLeft: '1pt solid', borderLeftColor: '#fff' },
+          three: { borderLeft: '1rpx solid rgba(51, 51, 51, 0.15)', borderLeftColor: '#fff' },
         })`,
     },
   ],
