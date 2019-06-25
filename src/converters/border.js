@@ -1,6 +1,7 @@
 const t = require('babel-types');
 const validationUtil = require('../utils/validation');
 const valueUtil = require('../utils/value');
+const patternUtil = require('../utils/pattern');
 
 // support:
 // border: '1'    // width
@@ -18,23 +19,39 @@ module.exports = ({ path, state }, next) => {
   let style = 'solid';
   let color = '#000';
 
-  String(value.value)
-    .split(' ')
-    .slice(0, 3)
-    .forEach((v) => {
-      // 是一个数字
-      if (validationUtil.value(v)) {
-        width = v;
-        return;
-      }
-      if (validationUtil.borderStyle(v)) {
-        style = v;
-        return;
-      }
-      if (validationUtil.color(v)) {
-        color = v;
-      }
-    });
+  let splits = [];
+  const rgbColor = String(value.value).match(patternUtil.rgb);
+
+  if (!rgbColor) {
+    splits = String(value.value)
+      .split(' ')
+      .filter((v) => v);
+  } else {
+    splits = [
+      // 取出 rgba(xxx, xxx)
+      ...String(value.value)
+        .replace(patternUtil.rgb, '')
+        .split(' ')
+        .filter((v) => v),
+      // 与 rgba 组合
+      rgbColor[0],
+    ];
+  }
+
+  splits.slice(0, 3).forEach((v) => {
+    // 是一个数字
+    if (validationUtil.value(v)) {
+      width = v;
+      return;
+    }
+    if (validationUtil.borderStyle(v)) {
+      style = v;
+      return;
+    }
+    if (validationUtil.color(v)) {
+      color = v;
+    }
+  });
 
   const widthIdentifier = t.identifier(`${propertyName}Width`);
   const styleIdentifier = t.identifier('borderStyle');

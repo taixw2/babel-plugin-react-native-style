@@ -1,3 +1,5 @@
+const pattern = require('./pattern');
+
 exports.borderStyle = ['solid', 'dotted', 'dashed'];
 
 // 所有需要通过 rpx 转换的属性
@@ -56,9 +58,8 @@ exports.widthProperties = [
 ];
 
 exports.colors = [
-  /(^#[\w\d]{3}$)|(^#[\w\d]{6}$)|(^#[\w\d]{8}$)/,
-  // @https://stackoverflow.com/questions/7543818/regex-javascript-to-match-both-rgb-and-rgba
-  /^rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)(?:,\s*(\d*(?:\.\d+)?))?\)$/,
+  pattern.hex,
+  pattern.onlyRgb,
   'transparent',
   'aliceblue',
   'antiquewhite',
