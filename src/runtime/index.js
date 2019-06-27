@@ -1,5 +1,8 @@
+/* eslint-disable import/no-unresolved */
+/* eslint-disable no-underscore-dangle */
 const reactNative = require('react-native');
 
-const { width } = reactNative.Dimensions.get('window');
-exports.__RPX = (pt, designSize = 750) => reactNative.PixelRatio.roundToNearestPixel((pt * width) / designSize);
+const screenWidth = reactNative.Dimensions.get('window').width;
 
+exports.__RPX = (size, opts) =>
+  reactNative.PixelRatio.roundToNearestPixel((screenWidth / opts.designWidth) * parseInt(size, 10));

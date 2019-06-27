@@ -39,7 +39,7 @@ module.exports = {
 
   callRPX(node, opts) {
     const options = defaultOpts(opts);
-    return t.callExpression(t.identifier('__RPX'), [node, t.numericLiteral(options.rpx.size || 750)]);
+    return t.callExpression(t.identifier('__RPX'), [node, t.numericLiteral(options.designWidth)]);
   },
 
   specialRPX(node, opts) {
@@ -63,7 +63,7 @@ module.exports = {
     }
 
     // 数字， 并且默认启动 rpx: { padding: 1 }
-    if (options.rpx.enable && _.isFinite(Number(node.value))) {
+    if (options.rpx && _.isFinite(Number(node.value))) {
       return this.callRPX(node, options);
     }
 

@@ -9,7 +9,7 @@ pluginTester({
     {
       snapshot: true,
       title: 'margin test',
-      pluginOptions: { rpx: { enable: true, size: 750 } },
+      pluginOptions: { rpx: true, designWidth: 750 },
       code: `
       const styles = stylesheet.create({
         one: { margin: 0 },

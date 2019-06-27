@@ -8,7 +8,7 @@ pluginTester({
     {
       snapshot: true,
       title: 'border radius test',
-      pluginOptions: { rpx: { enable: true, size: 750 } },
+      pluginOptions: { rpx: true, designWidth: 750 },
       code: `const styles = stylesheet.create({
           one: { borderRadius: '1 1pt 0 0' },
           two: { borderRadius: '1 1 0', },
