@@ -10,5 +10,5 @@
   },
   "env": {
     "jest/globals": true
-  }
+  },
 }
