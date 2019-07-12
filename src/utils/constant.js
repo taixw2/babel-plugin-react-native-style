@@ -1,5 +1,3 @@
-
-
 exports.allowProperties = [
   'margin',
   'padding',
@@ -9,8 +7,18 @@ exports.allowProperties = [
   'borderLeft',
   'borderBottom',
   'borderRight',
+  'font',
+  'boxShadow',
+  'background',
+  'flex',
+  'flexFlow',
+  'fontFamily',
+  'fontVariant',
+  'shadowOffset',
+  'textShadow',
+  'textShadowOffset',
+  'transform',
 ];
-
 
 // 所有需要通过 rpx 转换的属性
 exports.lengthProperties = [

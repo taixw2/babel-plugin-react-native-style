@@ -1,0 +1,181 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`directions shorthand transforms borderRadius shorthand with 1 values: transforms borderRadius shorthand with 1 values 1`] = `
+"
+const styles = stylesheet.create({borderRadius: \\"0\\"})
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+const styles = stylesheet.create({
+  borderTopLeftRadius: 0,
+  borderTopRightRadius: 0,
+  borderBottomRightRadius: 0,
+  borderBottomLeftRadius: 0
+});
+"
+`;
+
+exports[`directions shorthand transforms borderRadius shorthand with 2 values: transforms borderRadius shorthand with 2 values 1`] = `
+"
+const styles = stylesheet.create({borderRadius: \\"0 1\\"})
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+const styles = stylesheet.create({
+  borderTopLeftRadius: 0,
+  borderTopRightRadius: 1,
+  borderBottomRightRadius: 0,
+  borderBottomLeftRadius: 1
+});
+"
+`;
+
+exports[`directions shorthand transforms borderRadius shorthand with 3 values: transforms borderRadius shorthand with 3 values 1`] = `
+"
+const styles = stylesheet.create({borderRadius: \\"0 1 2\\"})
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+const styles = stylesheet.create({
+  borderTopLeftRadius: 0,
+  borderTopRightRadius: 1,
+  borderBottomRightRadius: 2,
+  borderBottomLeftRadius: 1
+});
+"
+`;
+
+exports[`directions shorthand transforms borderRadius shorthand with 4 values: transforms borderRadius shorthand with 4 values 1`] = `
+"
+const styles = stylesheet.create({borderRadius: \\"0 1 2 3\\"})
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+const styles = stylesheet.create({
+  borderTopLeftRadius: 0,
+  borderTopRightRadius: 1,
+  borderBottomRightRadius: 2,
+  borderBottomLeftRadius: 3
+});
+"
+`;
+
+exports[`directions shorthand transforms margin shorthand with 1 values: transforms margin shorthand with 1 values 1`] = `
+"
+const styles = stylesheet.create({margin: \\"0\\"})
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+const styles = stylesheet.create({
+  marginTop: 0,
+  marginRight: 0,
+  marginBottom: 0,
+  marginLeft: 0
+});
+"
+`;
+
+exports[`directions shorthand transforms margin shorthand with 2 values: transforms margin shorthand with 2 values 1`] = `
+"
+const styles = stylesheet.create({margin: \\"0 1\\"})
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+const styles = stylesheet.create({
+  marginTop: 0,
+  marginRight: 1,
+  marginBottom: 0,
+  marginLeft: 1
+});
+"
+`;
+
+exports[`directions shorthand transforms margin shorthand with 3 values: transforms margin shorthand with 3 values 1`] = `
+"
+const styles = stylesheet.create({margin: \\"0 1 2\\"})
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+const styles = stylesheet.create({
+  marginTop: 0,
+  marginRight: 1,
+  marginBottom: 2,
+  marginLeft: 1
+});
+"
+`;
+
+exports[`directions shorthand transforms margin shorthand with 4 values: transforms margin shorthand with 4 values 1`] = `
+"
+const styles = stylesheet.create({margin: \\"0 1 2 3\\"})
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+const styles = stylesheet.create({
+  marginTop: 0,
+  marginRight: 1,
+  marginBottom: 2,
+  marginLeft: 3
+});
+"
+`;
+
+exports[`directions shorthand transforms padding shorthand with 1 values: transforms padding shorthand with 1 values 1`] = `
+"
+const styles = stylesheet.create({padding: \\"0\\"})
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+const styles = stylesheet.create({
+  paddingTop: 0,
+  paddingRight: 0,
+  paddingBottom: 0,
+  paddingLeft: 0
+});
+"
+`;
+
+exports[`directions shorthand transforms padding shorthand with 2 values: transforms padding shorthand with 2 values 1`] = `
+"
+const styles = stylesheet.create({padding: \\"0 1\\"})
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+const styles = stylesheet.create({
+  paddingTop: 0,
+  paddingRight: 1,
+  paddingBottom: 0,
+  paddingLeft: 1
+});
+"
+`;
+
+exports[`directions shorthand transforms padding shorthand with 3 values: transforms padding shorthand with 3 values 1`] = `
+"
+const styles = stylesheet.create({padding: \\"0 1 2\\"})
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+const styles = stylesheet.create({
+  paddingTop: 0,
+  paddingRight: 1,
+  paddingBottom: 2,
+  paddingLeft: 1
+});
+"
+`;
+
+exports[`directions shorthand transforms padding shorthand with 4 values: transforms padding shorthand with 4 values 1`] = `
+"
+const styles = stylesheet.create({padding: \\"0 1 2 3\\"})
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+const styles = stylesheet.create({
+  paddingTop: 0,
+  paddingRight: 1,
+  paddingBottom: 2,
+  paddingLeft: 3
+});
+"
+`;
