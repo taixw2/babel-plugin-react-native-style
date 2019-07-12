@@ -1,9 +1,14 @@
 {
   "extends": "airbnb-base",
+
+  "plugins": ["jest"],
   "rules": {
     "no-param-reassign": "off",
     "arrow-parens": "off",
     "function-paren-newline": "off",
     "object-curly-newline": "off"
+  },
+  "env": {
+    "jest/globals": true
   }
 }
