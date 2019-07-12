@@ -3,9 +3,9 @@
 exports[`babel-plugin-react-native-style border test: border test 1`] = `
 "
 const styles = stylesheet.create({
-          one: { border: 'solid #efe', borderLeft: '1 solid', borderLeftColor: '#fff' },
-          two: { borderLeft: '1pt solid', borderLeftColor: '#fff' },
-          three: { borderLeft: '1rpx solid rgba(51, 51, 51, 0.15)', borderLeftColor: '#fff' },
+          one: { border: 'solid #efe', borderLeft: '1 solid' },
+          two: { borderLeft: '1pt solid' },
+          three: { borderLeft: '1rpx solid rgba(51, 51, 51, 0.15)' },
         })
 
       ↓ ↓ ↓ ↓ ↓ ↓
@@ -14,23 +14,23 @@ var __RPX = require('babel-plugin-react-native-style-runtime').__RPX;
 
 const styles = stylesheet.create({
           one: {
-                    borderWidth: __RPX(1, 750),
-                    borderStyle: 'solid',
                     borderColor: '#efe',
-                    borderLeftWidth: __RPX(1, 750),
                     borderStyle: 'solid',
-                    borderLeftColor: '#000',
-                    borderLeftColor: '#fff' },
+                    borderWidth: __RPX(1, 750),
+                    borderColor: 'black',
+                    borderStyle: 'solid',
+                    borderLeftWidth: __RPX(1, 750)
+          },
           two: {
-                    borderLeftWidth: 1,
+                    borderColor: 'black',
                     borderStyle: 'solid',
-                    borderLeftColor: '#000',
-                    borderLeftColor: '#fff' },
+                    borderLeftWidth: __RPX(1, 750)
+          },
           three: {
-                    borderLeftWidth: __RPX(1, 750),
+                    borderColor: 'rgba(51, 51, 51, 0.15)',
                     borderStyle: 'solid',
-                    borderLeftColor: 'rgba(51, 51, 51, 0.15)',
-                    borderLeftColor: '#fff' }
+                    borderLeftWidth: __RPX(1, 750)
+          }
 });
 "
 `;

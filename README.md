@@ -11,6 +11,32 @@ This plugin is a highly recommended supplement to the base stylesheet library of
 - compilation rpx
 - supporting space values: `padding: "20rpx 20pt 10"`
 
+## output
+```javascript
+// 1. border: '1 solid #fff'
+// --->output
+borderWidth: 1,
+borderStyle: 'solid',
+borderColor: '#fff',
+
+// 2. rpx
+// height: '1rpx'
+// --->output
+var __RPX = require('babel-plugin-react-native-style-runtime').__RPX;
+height: __RPX(1)
+
+// 3. padding: '1 2rpx'
+// --->output
+var __RPX = require('babel-plugin-react-native-style-runtime').__RPX;
+paddingTop: 1,
+paddingBottom: 1,
+paddingLeft: __RPX(2),
+paddingRight: __RPX(2)
+
+// ...support list
+// padding, margin, border, borderRadius, ...
+```
+
 ## Quick start
 
 Install the plugin first:
@@ -32,39 +58,6 @@ Then add it to your babel configuration:
   "plugins": ["react-native-style"]
 }
 ```
-
-## output
-```javascript
-// 1. border: '1 solid #fff'
-// --->output
-borderWidth: 1,
-borderStyle: 'solid',
-borderColor: '#fff',
-
-// 2. rpx
-height: '1rpx'
-// --->output
-var __RPX = require('babel-plugin-react-native-style-runtime').__RPX;
-height: __RPX(1)
-
-// 3. padding: '1 2rpx'
-// --->output
-var __RPX = require('babel-plugin-react-native-style-runtime').__RPX;
-paddingTop: 1,
-paddingBottom: 1,
-paddingLeft: __RPX(2),
-paddingRight: __RPX(2)
-
-// ...support list
-// padding, margin, border, borderRadius, ...
-```
-
-## schedule
-- [ ] compilation rpx
-- [ ] native pt
-- [ ] supporting space values
-- [ ] supporting background
-
 
 ## License
 Licensed under the MIT License,Copyright (c) 2019 ouyangxin.
