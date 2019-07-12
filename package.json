@@ -70,6 +70,7 @@
     "react-fela": "^6.2.4"
   },
   "dependencies": {
+    "babel-plugin-react-native-style-convert-plugin": "^2.3.1",
     "babel-types": "^6.26.0",
     "lodash": "^4.17.11"
   },
