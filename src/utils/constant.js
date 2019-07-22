@@ -73,4 +73,5 @@ exports.lengthProperties = [
   'textShadowRadius',
   'includeFontPadding',
   'letterSpacing',
+  'shadowRadius'
 ];
