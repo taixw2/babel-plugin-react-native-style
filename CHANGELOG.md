@@ -17,3 +17,7 @@
 # 1.0.4
 1. 重构转换规则
 
+# 1.0.5
+1. fix shadowRadius 不支持 rpx 装换
+2. 新增 debug
+3. 删除 flex, fontfamily

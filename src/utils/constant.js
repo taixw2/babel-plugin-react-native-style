@@ -10,9 +10,9 @@ exports.allowProperties = [
   'font',
   'boxShadow',
   'background',
-  'flex',
+  // 'flex',
   'flexFlow',
-  'fontFamily',
+  // 'fontFamily',
   'fontVariant',
   'shadowOffset',
   'textShadow',
@@ -73,4 +73,5 @@ exports.lengthProperties = [
   'textShadowRadius',
   'includeFontPadding',
   'letterSpacing',
+  'shadowRadius'
 ];
