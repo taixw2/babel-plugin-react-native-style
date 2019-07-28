@@ -19,19 +19,26 @@ module.exports = () => {
     if (!validationUtil.plainObjectProperty(node)) return;
     if (!constants.allowProperties.includes(node.key.name)) return;
 
-    const styles = convertUtil.getStylesForProperty(node.key.name, String(node.value.value));
-    if (!styles) {
+    try {
+      const styles = convertUtil.getStylesForProperty(node.key.name, String(node.value.value));
+      if (!styles) {
+        if (options.debug) {
+          console.info('无法转换: ', node.key.name, node.value.value);
+          console.info(state.file.opts.filename);
+        }
+        return null;
+      }
+      path.replaceWithMultiple(
+        Object.keys(styles).map((keyName) =>
+          t.objectProperty(t.identifier(keyName), valueUtil.getLiteral(styles[keyName])),
+        ),
+      );
+    } catch (error) {
       if (options.debug) {
         console.info('无法转换: ', node.key.name, node.value.value);
         console.info(state.file.opts.filename);
       }
-      return null;
     }
-    path.replaceWithMultiple(
-      Object.keys(styles).map((keyName) =>
-        t.objectProperty(t.identifier(keyName), valueUtil.getLiteral(styles[keyName])),
-      ),
-    );
   }
 
   function transformUnit(path, state) {

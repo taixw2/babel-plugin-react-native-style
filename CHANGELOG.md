@@ -21,3 +21,6 @@
 1. fix shadowRadius 不支持 rpx 装换
 2. 新增 debug
 3. 删除 flex, fontfamily
+
+# 1.0.7
+1. fix 装换失败无法打包
