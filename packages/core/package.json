@@ -1,0 +1,61 @@
+{
+  "name": "babel-plugin-react-native-style",
+  "version": "1.0.6",
+  "description": "Improve the writing stylesheet experience",
+  "main": "dist/index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/taixw2/babel-plugin-react-native-style.git"
+  },
+  "keywords": [
+    "babel-plugin",
+    "react-native",
+    "style",
+    "react-native-style",
+    "stylesheet",
+    "react-native-stylesheet"
+  ],
+  "author": "mro",
+  "license": "ISC",
+  "files": [
+    "dist"
+  ],
+  "bugs": {
+    "url": "https://github.com/taixw2/babel-plugin-react-native-style/issues"
+  },
+  "homepage": "https://github.com/taixw2/babel-plugin-react-native-style#readme",
+  "devDependencies": {
+    "@types/babel__core": "^7.1.6",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "husky": "^4.2.3",
+    "install": "^0.13.0",
+    "lerna": "^3.16.5",
+    "lint-staged": "^10.0.10"
+  },
+  "dependencies": {
+    "@babel/core": "^7.9.0",
+    "@babel/types": "^7.9.0",
+    "css-to-react-native": "^3.0.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{ts}": [
+      "prettier --write",
+      "eslint"
+    ],
+    "*.{js,json,md}": [
+      "prettier --write"
+    ]
+  }
+}
