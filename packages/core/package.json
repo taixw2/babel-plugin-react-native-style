@@ -1,6 +1,6 @@
 {
   "name": "babel-plugin-react-native-style",
-  "version": "1.0.6",
+  "version": "2.0.0",
   "description": "Improve the writing stylesheet experience",
   "main": "dist/index.js",
   "directories": {
