@@ -22,5 +22,5 @@
 2. 新增 debug
 3. 删除 flex, fontfamily
 
-# 1.0.6
+# 2.0.0
 1. 用 css-to-react-native 重写&简化逻辑

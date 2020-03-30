@@ -1,6 +1,6 @@
 {
   "name": "babel-plugin-react-native-style",
-  "version": "1.0.7",
+  "version": "1.0.6",
   "description": "Improve the writing stylesheet experience",
   "main": "dist/index.js",
   "directories": {
@@ -57,5 +57,6 @@
     "*.{js,json,md}": [
       "prettier --write"
     ]
-  }
+  },
+  "gitHead": "d8ae76f7bdca1ea0e85ce6736f1fdc14c017b5a7"
 }
