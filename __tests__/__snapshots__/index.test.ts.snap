@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`babel-plugin-react-native-style 1. babel-plugin-react-native-style: 1. babel-plugin-react-native-style 1`] = `
+
+function sayHi(person = 'World') {
+  return 'Hello ' + person + '!'
+}
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+function sayHi(person = 'World') {
+  return 'Hello ' + person + '!';
+}
+
+
+`;
+
+exports[`babel-plugin-react-native-style 2. babel-plugin-react-native-style: 2. babel-plugin-react-native-style 1`] = `
+
+const styles = {
+  container: { padding: '10px 10px 10px' }
+}
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+const styles = {
+  container: {
+    paddingTop: 10,
+    paddingRight: 10,
+    paddingBottom: 10,
+    paddingLeft: 10,
+  },
+};
+
+
+`;
+
+exports[`babel-plugin-react-native-style 3. babel-plugin-react-native-style: 3. babel-plugin-react-native-style 1`] = `
+
+const styles = {
+  container: { height: '100vh' }
+}
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import { __$vh } from 'react-native-style-runtime';
+const styles = {
+  container: {
+    height: __$vh(100),
+  },
+};
+
+
+`;

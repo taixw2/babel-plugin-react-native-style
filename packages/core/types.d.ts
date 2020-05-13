@@ -6,7 +6,7 @@ declare module 'css-to-react-native' {
   function transform(rule: Array<[string, string]>): IJSObject;
 
   export function getPropertyName(name: string): string;
-  export function getStylesForProperty(key: string, value: string): IJSObject;
+  export function getStylesForProperty(key: string, value: string | number): IJSObject;
 
   export default transform;
 }

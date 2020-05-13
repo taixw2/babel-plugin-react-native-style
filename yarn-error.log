@@ -1,0 +1,42 @@
+Arguments: 
+  /usr/local/bin/node /Users/ouyangxin/.npm-global/bin/yarn add @typescript-eslint eslint-config-prettier eslint-plugin-prettier eslint @typescript-eslint/parser -D
+
+PATH: 
+  /usr/local/opt/ruby/bin:/Users/ouyangxin/.npm-global/bin:/Library/flutter/bin:/usr/local/opt/ruby/bin:/Users/ouyangxin/.npm-global/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/opt/ruby/bin:/Users/ouyangxin/.npm-global/bin:/Library/flutter/bin:/Users/ouyangxin/Library/Android/sdk/emulator:/Users/ouyangxin/Library/Android/sdk/tools:/Users/ouyangxin/Library/Android/sdk/tools/bin:/Users/ouyangxin/Library/Android/sdk/platform-tools:/Library/gradle/bin:/Users/ouyangxin/Library/Android/sdk/emulator:/Users/ouyangxin/Library/Android/sdk/tools:/Users/ouyangxin/Library/Android/sdk/tools/bin:/Users/ouyangxin/Library/Android/sdk/platform-tools:/Library/gradle/bin:/Users/ouyangxin/Library/Android/sdk/emulator:/Users/ouyangxin/Library/Android/sdk/tools:/Users/ouyangxin/Library/Android/sdk/tools/bin:/Users/ouyangxin/Library/Android/sdk/platform-tools:/Library/gradle/bin
+
+Yarn version: 
+  1.22.0
+
+Node version: 
+  12.11.0
+
+Platform: 
+  darwin x64
+
+Trace: 
+  Error: https://registry.npmjs.org/@typescript-eslint: Request "https://registry.npmjs.org/@typescript-eslint" returned a 405
+      at Request.params.callback [as _callback] (/Users/ouyangxin/.npm-global/lib/node_modules/yarn/lib/cli.js:66984:18)
+      at Request.self.callback (/Users/ouyangxin/.npm-global/lib/node_modules/yarn/lib/cli.js:140727:22)
+      at Request.emit (events.js:210:5)
+      at Request.<anonymous> (/Users/ouyangxin/.npm-global/lib/node_modules/yarn/lib/cli.js:141699:10)
+      at Request.emit (events.js:210:5)
+      at IncomingMessage.<anonymous> (/Users/ouyangxin/.npm-global/lib/node_modules/yarn/lib/cli.js:141621:12)
+      at Object.onceWrapper (events.js:299:28)
+      at IncomingMessage.emit (events.js:215:7)
+      at endReadableNT (_stream_readable.js:1183:12)
+      at processTicksAndRejections (internal/process/task_queues.js:80:21)
+
+npm manifest: 
+  {
+    "name": "root",
+    "private": true,
+    "devDependencies": {
+      "lerna": "^3.16.5"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
